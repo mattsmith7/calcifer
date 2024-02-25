@@ -27,11 +27,11 @@ def num_tokens_from_string(string: str, encoding_name: str) -> int:
 
 tokens_count = num_tokens_from_string(text, embedding_encoding)
 
-# embeddings = embeddings_model.embed_documents(
-#     [
-#     text
-#     ]
-# )
+embeddings = embeddings_model.embed_documents(
+    [
+    text
+    ]
+)
 
 embeddings_length = len(embeddings)
 
