@@ -1,10 +1,8 @@
-import pandas as pd
 import json
+from pathlib import Path
+from pprint import pprint
 
-#reads .csv file from data folder
-data = pd.read_csv('../data/exchange-formatted-content.csv', header=0)
-#converts .csv to json format
-jsonData = data.to_dict(orient='records')
-#opens new json file and dumps jsonData into it
-with open("exchange_content.json", "w") as file:
-    json.dump(jsonData, file)
+file_path='./data/exchange_content.json'
+data = json.loads(Path(file_path).read_text())
+
+print(data)
