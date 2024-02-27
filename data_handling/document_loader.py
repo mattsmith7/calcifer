@@ -1,8 +1,14 @@
-import json
-from pathlib import Path
 from pprint import pprint
 
-file_path='./data/exchange_content.json'
-data = json.loads(Path(file_path).read_text())
+from llama_index.readers.json import JSONReader
 
-print(data)
+file_path='./data/exchange_content.json'
+
+documents = JSONReader().load_data(file_path)
+
+class JsonData:
+    def __init__(self):
+        self.data = documents
+
+    def retrieve_json_data(self):
+        return self.data
