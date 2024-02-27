@@ -1,14 +1,15 @@
+from langchain_community.document_loaders import JSONLoader
+
+import json
+from pathlib import Path
 from pprint import pprint
 
-from llama_index.readers.json import JSONReader
-
 file_path='./data/exchange_content.json'
-
-documents = JSONReader().load_data(file_path)
+data = json.loads(Path(file_path).read_text())
 
 class JsonData:
     def __init__(self):
-        self.data = documents
+        self.data = data
 
     def retrieve_json_data(self):
         return self.data
