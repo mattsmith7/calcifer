@@ -8,7 +8,7 @@ class JSONSplitter:
         self.maxChunk = maxChunk
 
         # calls JsonData from data loader
-        self.json_data = JSONLoader().json_data()
+        self.json_data = JSONLoader().json_data("./data/exchange_content.json")
 
         self.splitter = RecursiveJsonSplitter(max_chunk_size=self.maxChunk)
 
@@ -39,7 +39,7 @@ class CharSplitter:
         self.chunkOverlap = chunkOverlap
 
         # calls JsonData from data loader
-        self.json_data = JSONLoader().json_data()
+        self.json_data = JSONLoader().json_data("./data/exchange_content.json")
 
         print(type(self.json_data[0]))
 

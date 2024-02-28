@@ -1,9 +1,5 @@
 import os
-from JSONSplitter import JSONSplitter
 import tiktoken
-
-# set path for getting .env keys
-path = os.environ["PATH"]
 
 from langchain_openai import OpenAIEmbeddings
 
@@ -24,7 +20,7 @@ class Embedder:
 
         return self.embeddings
     
-    def total_tokens(self, data:list):
+    def total_tokens(self, data: list):
         # returns the number of tokens for each string in data list
         encoding = tiktoken.get_encoding(self.encoding)
         num_tokens = 0
