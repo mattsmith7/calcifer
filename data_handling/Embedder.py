@@ -1,6 +1,5 @@
 import os
 from JSONSplitter import JSONSplitter
-from pprint import pprint
 import tiktoken
 
 # set path for getting .env keys
@@ -35,9 +34,3 @@ class Embedder:
             print(len(encoding.encode(item)))
 
         return num_tokens
-    
-# print(JSONSplitter(10000).splits_char_lengths())
-
-# print(len(Embedder().create_embeddings(JSONSplitter(6000).get_splits())))
-    
-print(Embedder().total_tokens(JSONSplitter(10000).get_splits()))

@@ -3,8 +3,6 @@ from langchain.text_splitter import CharacterTextSplitter
 
 from JSONLoader import JSONLoader
 
-from pprint import pprint
-
 class JSONSplitter:
     def __init__(self, maxChunk=2000):
         self.maxChunk = maxChunk
@@ -72,10 +70,3 @@ class CharSplitter:
             return [len(split) for split in self.splits]
         else:
             return [len(split) for split in self.splits[:count]]
-
-texts = JSONSplitter(10000).get_splits()
-
-print(JSONSplitter(10000).splits_char_lengths())
-print(JSONSplitter().splits_length())
-
-pprint(texts[0])
