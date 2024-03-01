@@ -20,5 +20,3 @@ class JSONLoader:
         file.close()
 
         return id
-    
-    

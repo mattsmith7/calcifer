@@ -4,11 +4,10 @@ from langchain.text_splitter import CharacterTextSplitter
 from JSONLoader import JSONLoader
 
 class JSONSplitter:
-    def __init__(self, maxChunk=2000):
+    def __init__(self, data: list, maxChunk=2000):
         self.maxChunk = maxChunk
 
-        # calls JsonData from data loader
-        self.json_data = JSONLoader().json_data("./data/exchange_content.json")
+        self.json_data = data
 
         self.splitter = RecursiveJsonSplitter(max_chunk_size=self.maxChunk)
 

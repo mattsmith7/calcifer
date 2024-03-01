@@ -6,6 +6,8 @@ import chromadb
 import chromadb.utils.embedding_functions as embedding_functions
 
 from JSONLoader import JSONLoader
+from JSONSplitter import JSONSplitter
+from Embedder import Embedder
 
 class ChromaDB:
     def __init__(self, model="text-embedding-3-small", open_api_key=os.environ.get("OPENAI_API_KEY"), chroma_path="./data/chroma"):
@@ -33,31 +35,23 @@ class ChromaDB:
     def get_collection_settings(self,):
         return self.persistent_client.get_settings()
 
-    def add_docs(self, docs: list, ids: list, metadatas: list = None, embeddings: list = None):
+    def add_docs(self, docs: list, ids: list, embeddings: list = None, metadatas: list = None):
         self.collection.add(
-            documents=docs,
             ids=ids,
+            embeddings=embeddings,
             metadatas=metadatas,
-            embeddings=embeddings
+            documents=docs,
         )
 
-from pprint import pprint
+    # return all embeddings from Chroma colection
+    def get_docs(self):
+        return self.collection.get(include=['embeddings'])
 
-docs = []
-ids = []
+import json
 
-for filename in os.listdir('./data/content'):
-    f = os.path.join('./data/content', filename)
+embeds = ChromaDB().get_docs()
 
-    docs.append(JSONLoader().json_data(f))
+with open("./data/embeds.json", "w") as file:
+    json.dump(embeds, file)
+file.close()
 
-for filename in os.listdir('./data/content'):
-    f = os.path.join('./data/content', filename)
-
-    ids.append(JSONLoader().get_id(f))
-
-pprint(docs[:3])
-
-# ChromaDB().add_docs(docs, ids)
-
-# pprint(ChromaDB().get_collection("calcifer_collection"))
