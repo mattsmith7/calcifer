@@ -1,6 +1,7 @@
 import os
 from pprint import pprint
 from VectorStore import ChromaDB
+from JSONLoader import JSONLoader
 
 docs = []
 ids = []

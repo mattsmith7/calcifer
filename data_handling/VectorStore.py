@@ -46,12 +46,3 @@ class ChromaDB:
     # return all embeddings from Chroma colection
     def get_docs(self):
         return self.collection.get(include=['embeddings'])
-
-import json
-
-embeds = ChromaDB().get_docs()
-
-with open("./data/embeds.json", "w") as file:
-    json.dump(embeds, file)
-file.close()
-
